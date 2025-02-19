@@ -19,7 +19,7 @@ const Navbar = () => {
 
         
         <div className="hidden md:flex space-x-6 font-medium">
-          <Link to="/" className="hover:text-[#638ecb] rounded-full p-2 hover:bg-slate-100">Dashboards</Link>
+          <Link to="/" className="hover:text-[#638ecb] rounded-full p-2 hover:bg-slate-100">Dashboard</Link>
           <Link to="#" className="hover:text-[#638ecb] rounded-full p-2 hover:bg-slate-100">Reports</Link>
           <Link to="#" className="hover:text-[#638ecb] rounded-full p-2 hover:bg-slate-100">Settings</Link>
           <Link to="#" className="hover:text-[#638ecb] rounded-full p-2 hover:bg-slate-100">Profile</Link>
