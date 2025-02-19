@@ -17,14 +17,14 @@ const Main = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 w-full max-w-4xl">
         
         <Link to="/nutrition" className="group">
-          <div className="p-32 bg-white shadow-lg rounded-xl flex items-center space-x-4 hover:bg-blue-100 transition">
-            <Utensils size={32} className="text-[#638ecb] group-hover:text-blue-800" />
+          <div className=" h-[20rem] bg-white shadow-lg rounded-xl flex items-center justify-center space-x-4 hover:bg-blue-100 transition">
+            <Utensils size={32} className=" text-[#638ecb] group-hover:text-blue-800" />
             <span className="text-lg font-semibold">Nutrition Logging</span>
           </div>
         </Link>
 
         <Link to="/heartrate" className="group">
-          <div className="p-32 bg-white shadow-lg rounded-xl flex items-center space-x-4 hover:bg-blue-100 transition">
+          <div className="h-[20rem] bg-white shadow-lg rounded-xl flex items-center justify-center space-x-4 hover:bg-blue-100 transition">
             <Heart size={32} className="text-[#638ecb] group-hover:text-blue-800" />
             <span className="text-lg font-semibold">Heart rate Measure</span>
           </div>
@@ -32,15 +32,15 @@ const Main = () => {
 
         
         <Link to="/hydration" className="group">
-          <div className="p-32 bg-white shadow-lg rounded-xl flex items-center space-x-4 hover:bg-blue-100 transition">
-            <Droplet size={32} className="text-[#638ecb] group-hover:text-blue-800" />
+          <div className="h-[20rem] bg-white shadow-lg rounded-xl flex items-center  justify-center space-x-4 hover:bg-blue-100 transition">
+            <Droplet size={32} className=" text-[#638ecb] group-hover:text-blue-800" />
             <span className="text-lg font-semibold">Hydration Reminders</span>
           </div>
         </Link>
 
         
         <Link to="/visualization" className="group">
-          <div className="p-32 bg-white shadow-lg rounded-xl flex items-center space-x-4 hover:bg-blue-100 transition">
+          <div className="h-[20rem] bg-white shadow-lg rounded-xl flex items-center justify-center space-x-4 hover:bg-blue-100 transition">
             <BarChart size={32} className="text-[#638ecb] group-hover:text-blue-800" />
             <span className="text-lg font-semibold">Data Visualization</span>
           </div>
