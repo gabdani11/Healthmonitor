@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from "react";
 import { Menu, X, HeartPulse } from "lucide-react";
+import {Link}  from "react-router-dom";
 
 const Navbar = () => {
 
@@ -18,10 +19,11 @@ const Navbar = () => {
 
         
         <div className="hidden md:flex space-x-6 font-medium">
-          <a href="/"className="hover:text-[#638ecb] rounded-full p-2 hover:bg-slate-100">Dashboard</a>
-          <a href="#" className="hover:text-[#638ecb] rounded-full p-2 hover:bg-slate-100 ">Reports</a>
-          <a href="#" className="hover:text-[#638ecb] rounded-full p-2 hover:bg-slate-100 ">Settings</a>
-          <a href="#" className="hover:text-[#638ecb] rounded-full p-2 hover:bg-slate-100 ">Profile</a>
+          <Link to="/" className="hover:text-[#638ecb] rounded-full p-2 hover:bg-slate-100">Dashboards</Link>
+          <Link to="#" className="hover:text-[#638ecb] rounded-full p-2 hover:bg-slate-100">Reports</Link>
+          <Link to="#" className="hover:text-[#638ecb] rounded-full p-2 hover:bg-slate-100">Settings</Link>
+          <Link to="#" className="hover:text-[#638ecb] rounded-full p-2 hover:bg-slate-100">Profile</Link>
+          
         </div>
 
         
@@ -36,10 +38,12 @@ const Navbar = () => {
       
       {isOpen && (
         <div className="md:hidden mt-4 flex flex-col space-y-3 items-center">
-          <a href="/" className="hover:text-gray-200">Dashboard</a>
-          <a href="#" className="hover:text-gray-200">Reports</a>
-          <a href="#" className="hover:text-gray-200">Settings</a>
-          <a href="#" className="hover:text-gray-200">Profile</a>
+          
+          <Link to="/" className="hover:text-[#638ecb] rounded-full p-2 hover:bg-slate-100">Dashboard</Link>
+          <Link to="#" className="hover:text-[#638ecb] rounded-full p-2 hover:bg-slate-100">Reports</Link>
+          <Link to="#" className="hover:text-[#638ecb] rounded-full p-2 hover:bg-slate-100">Settings</Link>
+          <Link to="#" className="hover:text-[#638ecb] rounded-full p-2 hover:bg-slate-100">Profile</Link>
+          
         </div>
       )}
     </nav>
