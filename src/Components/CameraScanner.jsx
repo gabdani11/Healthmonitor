@@ -6,6 +6,8 @@ const CameraScanner = ({ onScan }) => {
 
     useEffect(() => {
         if (scanning) {
+            console.log("Initializing QuaggaJS...");
+
             Quagga.init({
                 inputStream: {
                     type: "LiveStream",
@@ -17,26 +19,35 @@ const CameraScanner = ({ onScan }) => {
                     target: document.querySelector("#scanner-container"),
                 },
                 decoder: {
-                    readers: ["ean_reader", "upc_reader"], // Supports multiple barcode types
+                    readers: ["ean_reader", "upc_reader"], // Barcode types
                 },
             }, function (err) {
                 if (err) {
                     console.error("QuaggaJS Init Error:", err);
                     return;
                 }
+                console.log("QuaggaJS Initialized ✅");
                 Quagga.start();
             });
 
             Quagga.onDetected((data) => {
+                console.log("Barcode detected:", data.codeResult.code);
                 onScan(data.codeResult.code);
                 setScanning(false);
                 Quagga.stop();
+            });
+
+            Quagga.onProcessed((result) => {
+                if (result) {
+                    console.log("Processing frame...");
+                }
             });
         }
 
         return () => {
             if (scanning) {
                 Quagga.stop();
+                console.log("QuaggaJS Stopped");
             }
         };
     }, [scanning, onScan]);
