@@ -1,39 +1,64 @@
-// CameraScanner.jsx - Captures barcode using laptop camera
-import React, { useState, useRef, useCallback } from 'react';
-import Webcam from 'react-webcam';
+import React, { useEffect, useState } from 'react';
 import Quagga from 'quagga';
 
 const CameraScanner = ({ onScan }) => {
-    const webcamRef = useRef(null);
     const [scanning, setScanning] = useState(false);
 
-    const capture = useCallback(() => {
-        if (!scanning) {
-            setScanning(true);
-            const imageSrc = webcamRef.current.getScreenshot();
-            processBarcode(imageSrc);
-        }
-    }, [scanning]);
+    useEffect(() => {
+        if (scanning) {
+            Quagga.init({
+                inputStream: {
+                    type: "LiveStream",
+                    constraints: {
+                        width: 640,
+                        height: 480,
+                        facingMode: "environment" // Use laptop camera
+                    },
+                    target: document.querySelector("#scanner-container"),
+                },
+                decoder: {
+                    readers: ["ean_reader", "upc_reader"], // Supports multiple barcode types
+                },
+            }, function (err) {
+                if (err) {
+                    console.error("QuaggaJS Init Error:", err);
+                    return;
+                }
+                Quagga.start();
+            });
 
-    const processBarcode = (imageSrc) => {
-        Quagga.decodeSingle({
-            decoder: { readers: ["ean_reader"] },
-            locate: true,
-            src: imageSrc,
-        }, (result) => {
-            if (result && result.codeResult) {
-                onScan(result.codeResult.code);
-            } else {
-                alert("Barcode not detected. Try again.");
+            Quagga.onDetected((data) => {
+                onScan(data.codeResult.code);
+                setScanning(false);
+                Quagga.stop();
+            });
+        }
+
+        return () => {
+            if (scanning) {
+                Quagga.stop();
             }
-            setScanning(false);
-        });
-    };
+        };
+    }, [scanning, onScan]);
 
     return (
         <div className="flex flex-col items-center">
-            <Webcam ref={webcamRef} screenshotFormat="image/png" className="rounded-lg shadow-md" />
-            <button onClick={capture} className="mt-4 bg-blue-500 text-white py-2 px-4 rounded">Scan Barcode</button>
+            <div id="scanner-container" className="w-full h-64 border rounded shadow"></div>
+            {!scanning ? (
+                <button
+                    onClick={() => setScanning(true)}
+                    className="mt-4 bg-blue-500 text-white py-2 px-4 rounded"
+                >
+                    Start Scanning
+                </button>
+            ) : (
+                <button
+                    onClick={() => setScanning(false)}
+                    className="mt-4 bg-red-500 text-white py-2 px-4 rounded"
+                >
+                    Stop Scanning
+                </button>
+            )}
         </div>
     );
 };
