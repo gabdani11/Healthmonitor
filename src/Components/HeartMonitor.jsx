@@ -5,7 +5,7 @@ const HeartMonitor = () => {
     const [data, setData] = useState([]);
     const [heartRate, setHeartRate] = useState(0);
 
-    // Fetch heart rate data every second
+    
     useEffect(() => {
         const interval = setInterval(() => {
             fetch("http://your_server_ip:5000/heartbeat")
@@ -60,7 +60,7 @@ const HeartMonitor = () => {
 
             
             <div className="mt-6 text-gray-500 text-sm text-center">
-                &copy; {new Date().getFullYear()} HeartMonitor. All rights reserved.
+                &copy; {new Date().getFullYear()} Daniel. All rights reserved.
             </div>
         </div>
     );
