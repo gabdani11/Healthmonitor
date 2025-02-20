@@ -1,13 +1,20 @@
-import React from 'react'
+import React, { useState } from "react";
+import CameraScanner from "./CameraScanner";
+import NutritionInfo from "./NutritionInfo";
+import StatusIndicator from "./StatusIndicator";
+
 
 const Nutrition = () => {
-  return (
-    <div>
+    const [barcode, setBarcode] = useState("");
 
-<h1 className="text-2xl font-bold">Nutrition Logging</h1>
-<p>Here, you can log your meals and track calories.</p>
-    </div>
-  )
-}
+    return (
+        <div className="p-6">
+            <h1 className="text-2xl font-bold mb-4">Nutrition Scanner</h1>
+            <CameraScanner onScan={setBarcode} />
+            {barcode && <NutritionInfo barcode={barcode} />}
+            {barcode && <StatusIndicator nutrition={barcode} />}
+        </div>
+    );
+};
 
-export default Nutrition
+export default Nutrition;
